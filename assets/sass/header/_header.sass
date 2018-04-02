@@ -1,0 +1,80 @@
+.header
+  &__top
+    background-color: #aec8ed
+    padding-top: 50px
+    padding-bottom: 10px
+  &__left
+    a
+      text-decoration: none
+  &__title
+    +fz(49.5)
+    color: #675f53
+    line-height: 1
+  &__text
+    +fz(20.5)
+    text-align: right
+    color: #675f53
+    line-height: 1
+  &__social
+    margin-left: 20px
+    i
+      +fz(30)
+      color: #675f53
+      transition: all .25s
+    &:hover
+      i
+        color: darken(#675f53, 10%)
+    
+  &__menu
+    background-color: #e8e1d6
+    ul
+      list-style-type: none
+      padding: 15px 0
+      li
+        a
+          text-decoration: none
+          text-transform: uppercase
+          color: #000
+          +fz(17)
+          &:hover
+            text-decoration: underline
+        &.active
+          a
+            color: #2c4f81
+            text-decoration: underline
+
+@media screen and (max-width: 1170px)
+  .header
+    &__menu
+      ul
+        li
+          a
+            +fz(14)
+@media screen and (max-width: 992px)
+  .header
+    &__menu
+      .wrapper
+        flex-wrap: wrap
+
+      ul
+        li
+          flex-basis: 100%
+          text-align: center
+          a
+            +fz(14)
+
+@media screen and (max-width: 768px)
+  .header
+    &__top
+      padding-top: 20px
+      .wrapper
+        flex-wrap: wrap
+    &__left
+      flex-basis: 100%
+      text-align: center
+    &__text
+      text-align: center
+      padding-bottom: 20px
+    &__right
+      text-align: center
+      flex-basis: 100%

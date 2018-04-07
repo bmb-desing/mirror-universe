@@ -1,8 +1,9 @@
+import store from "./index";
+import axios from '~/plugins/axios'
 export default {
     state: {
         visits: [],
         rating: [],
-        comments: []
     },
     getters: {
         getVisits: (state) => {
@@ -11,14 +12,32 @@ export default {
         getRating: (state) => {
             return state.rating
         },
-        getComments: (state) => {
-            return state.comments
-        },
-        isUserComment: (state) => (id) => {
-          status = state.comments.find(comment => comment.id == id)
-          return status ? true : false
+        getRatingById: (state) => (id) => {
+            const rating = state.rating.indexOf(id)
+            return rating == -1 ? true : false
         }
     },
-    mutations: {},
-    actions: {}
+    mutations: {
+        allRating: (state, payload) => {
+            return state.rating = payload
+        },
+        pushRating: (state, payload) => {
+            return state.rating.push(payload)
+        },
+    },
+    actions: {
+        addRating: (state, payload) => {
+            axios.post('/api/addRating', {
+                id: payload.id,
+                rating: payload.rating
+            }).then((res) => {
+                state.commit('pushRating', res.data)
+            }).catch((err) => {
+                console.log(err)
+            })
+        },
+        async nuxtServerInit({commit}, {req}) {
+            commit('allRating', req.session.rating ? req.session.rating : [])
+        }
+    }
 }

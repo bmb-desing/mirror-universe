@@ -1,48 +1,56 @@
 <template>
-  <section class="container">
-    <img src="~assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
-    <h1 class="title">
-      USERS
-    </h1>
-    <ul class="users">
-      <li v-for="(user, index) in users" :key="index" class="user">
-        <nuxt-link :to="{ name: 'id', params: { id: index }}">
-          {{ user.name }}
-        </nuxt-link>
-      </li>
-    </ul>
-  </section>
+    <section class="container">
+      <div class="container__left">
+        <div class="post">
+          <div class="post__item" v-for="post in posts" :key="post.id">
+            <div class="post__left">
+              <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias" v-if="post.thumbnail">
+                <img :src="post.thumbnail" :alt="post.title" >
+              </nuxt-link>
+            </div>
+            <div class="post__right">
+              <div class="post__category">
+                <nuxt-link :to="'/'+ post.cat.alias">{{post.cat.title}}</nuxt-link>
+              </div>
+              <h2 class="post__title">
+                <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias">{{post.title}}</nuxt-link>
+              </h2>
+              <div class="post__text">
+                {{post.shortText}}...
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="button">
+          <nuxt-link :to="'/posts'">Все записи</nuxt-link>
+        </div>
+      </div>
+    </section>
 </template>
 
 <script>
 import axios from '~/plugins/axios'
-
 export default {
-  async asyncData () {
-    let { data } = await axios.get('/api/users')
-    return { users: data }
+  asyncData ({ error }) {
+      return axios.get('/api/post-index')
+          .then((res) => {
+              return { posts: res.data}
+          })
+          .catch((e) => {
+              error({ statusCode: 404, message: 'Страница не найдена' })
+          })
   },
   head () {
     return {
-      title: 'Users'
+      title: 'Главная',
+        meta: [
+            {hid: 'description', name: 'description', content: 'Главная страница' }
+        ]
     }
-  }
+  },
 }
 </script>
 
-<style scoped>
-.title
-{
-  margin: 30px 0;
-}
-.users
-{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.user
-{
-  margin: 10px 0;
-}
+<style>
+
 </style>

@@ -25,7 +25,7 @@
             <nav>
                 <ul class="wrapper wrapper_flex wrapper_jc">
                     <nuxt-link :to="`/${item.alias}`" tag="li" class="menu__item" v-for="(item, key) in menu" :key="key">
-                        <a>{{item.name}}</a>
+                        <a>{{item.title}}</a>
                     </nuxt-link>
                 </ul>
             </nav>

@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize'
-const sequelize = new Sequelize('mirror', 'root', '', {
+import striptags from 'striptags'
+export const sequelize = new Sequelize('mirror', 'root', '', {
 	host: 'localhost',
 	dialect: 'mysql'
 })
-export const category = sequelize.define('categoties', {
+export const category = sequelize.define('cats', {
 	title: Sequelize.STRING,
 	description: Sequelize.TEXT,
 	alias: {
@@ -21,11 +22,28 @@ export const post = sequelize.define('posts', {
 	text: {
 		type: Sequelize.TEXT, allowNull: false
 	},
+	shortText: {
+        type: Sequelize.TEXT
+	},
 	rating: {
 		type: Sequelize.INTEGER, defaultValue: 0
 	},
+	ratingCount: {
+        type: Sequelize.INTEGER, defaultValue: 0
+	},
 	visits: {
 		type: Sequelize.INTEGER, defaultValue: 0
+	}
+}, {
+	hooks: {
+		beforeCreate: (post) => {
+			const shortText = striptags(post.text)
+			return post.shortText = shortText.substr(0 , 250)
+		},
+		beforeUpdate: (post) => {
+            const shortText = striptags(post.text)
+            return post.shortText = shortText.substr(0 , 250)
+		}
 	}
 })
 export const comment = sequelize.define('comments', {

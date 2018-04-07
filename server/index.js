@@ -3,7 +3,7 @@ import { Nuxt, Builder } from 'nuxt'
 
 import database from './model/index'
 import shedule from 'node-schedule'
-import parser from './parser'
+import parser from './helpers/parser'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import api from './api'
@@ -22,8 +22,6 @@ app.use(session({
 }))
 // Import API Routes
 app.use('/api', api)
-
-
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')

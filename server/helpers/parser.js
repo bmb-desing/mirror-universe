@@ -37,44 +37,44 @@ const parser = () => needle.get(url, function (err, res) {
 
 function parsePage(res) {
 
-	const $ = cheerio.load(res.body, { decodeEntities: false });
-	const title = $('head title').text()
-	const description = $('meta[property="og:description"]').attr('content')
-	const text = $('.itemFullText').html()
-	category.findOne({where: {title : $('.itemCategory a').text()}}).then(cat => {
-		if (cat) {
-			const content = {}
-			content.catId = cat.id
-			content.title = title
-			content.thumbnail = getThumbnail(text)
-			content.text = parseText(text)
-			content.alias = slugify(title)
-			content.description = description
+    const $ = cheerio.load(res.body, { decodeEntities: false });
+    const title = $('head title').text()
+    const description = $('meta[property="og:description"]').attr('content')
+    const text = $('.itemFullText').html()
+    category.findOne({where: {title : $('.itemCategory a').text()}}).then(cat => {
+        if (cat) {
+            const content = {}
+            content.catId = cat.id
+            content.title = title
+            content.thumbnail = getThumbnail(text)
+            content.text = parseText(text)
+            content.alias = slugify(title)
+            content.description = description
 
-			post.create(content).then(console.log('Пост успешно добавлен')).catch((e) => {
-			    console.log(e)
+            post.create(content).then(console.log('Пост успешно добавлен')).catch((e) => {
+                console.log(e)
             })
-		}
-	})
+        }
+    })
 }
 function parseText(text) {
     const $ = cheerio.load(text)
-	const img = $('img').each(function (index, el) {
-		const path = $(this).attr('src')
+    const img = $('img').each(function (index, el) {
+        const path = $(this).attr('src')
         const pathArr = path.split('/')
-		const nameFile = pathArr.pop()
+        const nameFile = pathArr.pop()
         pathArr.splice(0,1)
-		const image = download(resolve(url, path), pathArr, nameFile, function(){
-		})
+        const image = download(resolve(url, path), pathArr, nameFile, function(){
+        })
     })
-	return text
+    return text
 }
 function download(uri, filepath, name, callback){
-	const path = 'static/'+ filepath.join('/')
-	mkdirp(path, function (err) {
-		if (err) throw err
+    const path = 'static/'+ filepath.join('/')
+    mkdirp(path, function (err) {
+        if (err) throw err
     })
-	const filename = path + '/' + name
+    const filename = path + '/' + name
 
     request.head(uri, function(err, res, body){
         needle.get(uri, {multipart: true}).pipe(
@@ -82,8 +82,8 @@ function download(uri, filepath, name, callback){
                 .on('open', (path) => {
                     console.log(path)
                 }).on('error', (err) => {
-                    console.log(err)
-                })
+                console.log(err)
+            })
         ).on('finish', (err) => {
             if (err) console.log('An error ocurred: ' + err.message)
             else console.log('Изображение загруженно')

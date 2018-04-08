@@ -3,7 +3,7 @@ import {post, category, sequelize, comment} from "../model";
 const router = Router()
 
 router.get('/post-index', function (req, res, next) {
-    post.findAll({limit: 7, order: [['updatedAt', 'DESC']], include: [{model:category}]}).then((posts) => {
+    post.findAll({limit: 7, order: [['createdAt', 'DESC']], include: [{model:category}]}).then((posts) => {
         res.json(posts)
     })
 })

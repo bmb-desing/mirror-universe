@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2625d475-c268-4174-9841-3c31e7d1e440" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/sass/_comment.sass" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/assets/sass/_form.sass" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/sass/_content.sass" afterPath="$PROJECT_DIR$/assets/sass/_content.sass" />
-      <change beforePath="$PROJECT_DIR$/assets/sass/main.sass" afterPath="$PROJECT_DIR$/assets/sass/main.sass" />
-      <change beforePath="$PROJECT_DIR$/assets/sass/posts/_article.sass" afterPath="$PROJECT_DIR$/assets/sass/posts/_article.sass" />
-      <change beforePath="$PROJECT_DIR$/nuxt.config.js" afterPath="$PROJECT_DIR$/nuxt.config.js" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/pages/_category/_post/index.vue" afterPath="$PROJECT_DIR$/pages/_category/_post/index.vue" />
-      <change beforePath="$PROJECT_DIR$/server/api/index.js" afterPath="$PROJECT_DIR$/server/api/index.js" />
       <change beforePath="$PROJECT_DIR$/server/api/posts.js" afterPath="$PROJECT_DIR$/server/api/posts.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -37,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="posts.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="posts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/api/posts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
+            <state relative-caret-position="88">
+              <caret line="5" column="47" lean-forward="false" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
               <folding>
                 <element signature="e#2518#3254#0" expanded="false" />
               </folding>
@@ -73,10 +63,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/_category/_post/index.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
+            <state relative-caret-position="474">
               <caret line="163" column="68" lean-forward="false" selection-start-line="163" selection-start-column="68" selection-end-line="163" selection-end-column="68" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="false" />
@@ -209,8 +199,8 @@
         <option value="$PROJECT_DIR$/assets/sass/_comment.sass" />
         <option value="$PROJECT_DIR$/assets/sass/main.sass" />
         <option value="$PROJECT_DIR$/assets/sass/_form.sass" />
-        <option value="$PROJECT_DIR$/server/api/posts.js" />
         <option value="$PROJECT_DIR$/pages/_category/_post/index.vue" />
+        <option value="$PROJECT_DIR$/server/api/posts.js" />
       </list>
     </option>
   </component>
@@ -455,12 +445,12 @@
       <workItem from="1522914425768" duration="34317000" />
       <workItem from="1522999241106" duration="27373000" />
       <workItem from="1523093744307" duration="24463000" />
-      <workItem from="1523174566543" duration="11386000" />
+      <workItem from="1523174566543" duration="12077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="118370000" />
+    <option name="totallyTimeSpent" value="119061000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -798,16 +788,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/api/posts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="110" column="31" lean-forward="false" selection-start-line="110" selection-start-column="31" selection-end-line="110" selection-end-column="31" />
-          <folding>
-            <element signature="e#2518#3254#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nuxt.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-374">
@@ -838,13 +818,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/_category/_post/index.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="474">
           <caret line="163" column="68" lean-forward="false" selection-start-line="163" selection-start-column="68" selection-end-line="163" selection-end-column="68" />
           <folding>
             <element signature="n#div#1;n#div#0;n#section#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#0;n#section#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#div#3;n#li#0;n#ul#0;n#div#3;n#div#0;n#section#0;n#template#0;n#!!top" expanded="false" />
             <element signature="e#4586#4629#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/api/posts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="5" column="47" lean-forward="false" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+          <folding>
+            <element signature="e#2518#3254#0" expanded="false" />
           </folding>
         </state>
       </provider>

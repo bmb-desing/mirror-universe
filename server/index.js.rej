@@ -1,0 +1,10 @@
+diff a/server/index.js b/server/index.js	(rejected hunks)
+@@ -3,7 +3,7 @@
+ 
+ import database from './model/index'
+ import shedule from 'node-schedule'
+-import parser from './parser'
++import parser from './helpers/parser'
+ import bodyParser from 'body-parser'
+ import session from 'express-session'
+ import api from './api'

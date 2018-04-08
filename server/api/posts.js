@@ -48,16 +48,29 @@ router.get('/post/:category/:post', function (req, res, next) {
                         {
                             alias: req.params.category
                         }
-                },
-                {
-                    model: comment
                 }
                 ]
         }).then((item) => {
         if (item) {
-            post.findAll({where: {catId: item.catId }, order: [[sequelize.fn(('RAND'))]], limit: 2}).then((rand) => {
-                res.json({post: item, rand: rand})
+            comment.findAll(
+                {
+
+                    attributes: [
+                        'parent_id',
+                        'id',
+                        'name',
+                        'text',
+                    ],
+                    where:
+                    {
+                        postId: item.id
+                    }
+                }).then((comments) => {
+                post.findAll({where: {catId: item.catId }, order: [[sequelize.fn(('RAND'))]], limit: 2}).then((rand) => {
+                    res.json({post: item, rand: rand, comments: comments})
+                })
             })
+
 
         }
         else {
@@ -90,5 +103,17 @@ router.post('/addRating', function (req,res,next) {
     else {
         res.sendStatus(403)
     }
+})
+router.post('/addComment', function (req, res, next) {
+    comment.create({
+        name: req.body.name,
+        text: req.body.text,
+        postId: req.body.postId,
+        parent_id: req.body.parent_id
+    }).then((comment) => {
+        res.json(comment)
+    }).catch((err) => {
+        res.sendStatus(403)
+    })
 })
 export default router

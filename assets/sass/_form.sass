@@ -1,0 +1,44 @@
+.form
+  margin-top: 10px
+  &__title
+    background-color: #aec8ed
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 10px
+    h2
+      +fz(20)
+      padding: 0
+      margin: 0
+    span
+      cursor: pointer
+      &:hover
+        text-decoration: underline
+  &__wrapper
+    width: 85%
+    min-width: 290px
+    margin: 0 auto
+  &__item
+    margin-top: 10px
+    input, textarea
+      width: 100%
+      +fz(16)
+      border: 1px solid #000
+    input
+      height: 30px
+      line-height: 30px
+    textarea
+      height: 120px
+      resize: vertical
+    button
+      cursor: pointer
+      max-width: 320px
+      width: 100%
+      display: block
+      margin: 0 auto
+      height: 40px
+      line-height: 35px
+      +fz(20)
+      border: none
+      background-color: darken(#aec8ed ,10%)
+      color: #fff

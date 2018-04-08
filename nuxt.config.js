@@ -1,10 +1,27 @@
+const axios = require('axios')
 module.exports = {
   /*
   ** Headers of the page
   */
-	router: {
-		linkActiveClass: 'active'
-	},
+  modules: [
+      '@nuxtjs/sitemap'
+  ],
+  router: {
+      linkActiveClass: 'active'
+  },
+  sitemap: {
+      path: '/sitemap.xml',
+      hostname: '127.0.0.1:3000',
+      cacheTime: 1000 * 60 * 15,
+      generate: false, // Enable me when using nuxt generate
+
+      routes() {
+          {
+              return axios.get(`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}` + '/api/sitemap').then(res => res.data.map(pages =>  pages))
+          }
+
+      }
+  },
   head: {
     title: 'starter',
     meta: [

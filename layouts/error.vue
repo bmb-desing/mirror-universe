@@ -1,16 +1,16 @@
 <template>
-  <section class="container">
-    <img src="../assets/img/logo.png" alt="Nuxt.js Logo" class="logo" />
+  <div class="error">
     <h1 class="title">
-      {{ error.statusCode }}
+      404
     </h1>
-    <h2 class="info">
-      {{ error.message }}
-    </h2>
+    <p class="info">
+      Страница не найдена<br/>
+      Вернитесь на главную,<br/> или выберите любой интересующий вас раздел
+    </p>
     <nuxt-link class="button" to="/" v-if="error.statusCode === 404">
-      Homepage
+      На главную
     </nuxt-link>
-  </section>
+  </div>
 </template>
 <script>
 export default {
@@ -18,20 +18,5 @@ export default {
 }
 </script>
 
-<style scoped>
-.title
-{
-  margin-top: 15px;
-  font-size: 5em;
-}
-.info
-{
-  font-weight: 300;
-  color: #9aabb1;
-  margin: 0;
-}
-.button
-{
-  margin-top: 50px;
-}
+<style>
 </style>

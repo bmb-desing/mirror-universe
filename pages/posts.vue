@@ -1,42 +1,41 @@
 <template>
-    <section class="container">
-        <div class="container__left">
-            <div class="post">
-                <div class="post__item" v-for="post in posts" :key="post.id">
-                    <div class="post__left">
-                        <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias" v-if="post.thumbnail">
-                            <img :src="post.thumbnail" :alt="post.title" >
-                        </nuxt-link>
+    <div>
+        <div class="post">
+            <div class="post__item" v-for="post in posts" :key="post.id">
+                <div class="post__left">
+                    <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias" v-if="post.thumbnail">
+                        <img :src="post.thumbnail" :alt="post.title" >
+                    </nuxt-link>
+                </div>
+                <div class="post__right">
+                    <div class="post__category">
+                        <nuxt-link :to="'/'+ post.cat.alias">{{post.cat.title}}</nuxt-link>
                     </div>
-                    <div class="post__right">
-                        <div class="post__category">
-                            <nuxt-link :to="'/'+ post.cat.alias">{{post.cat.title}}</nuxt-link>
-                        </div>
-                        <h2 class="post__title">
-                            <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias">{{post.title}}</nuxt-link>
-                        </h2>
-                        <div class="post__text">
-                            {{post.shortText}}...
-                        </div>
+                    <h2 class="post__title">
+                        <nuxt-link :to="'/' + post.cat.alias + '/' + post.alias">{{post.title}}</nuxt-link>
+                    </h2>
+                    <div class="post__text">
+                        {{post.shortText}}...
                     </div>
                 </div>
             </div>
-            <nav id="pagination" class="paginator">
-                <ul class="page-numbers">
-                    <li v-if="currentPage != 1" class="first">
-                        <nuxt-link :to="{ path: '/posts', query: { page: '1' } }" @click.native="changePage(1)" exact>В начало</nuxt-link>
-                    </li>
-                    <li v-for="num in this.pageNumbers" v-if="num != null" >
-                        <nuxt-link v-if="num != $route.query.page && num != currentPage" :to="{ path: '/posts', query: { page: num } }" @click.native="changePage(num)" exact>{{ num }}</nuxt-link>
-                        <span v-else>{{num}}</span>
-                    </li>
-                    <li v-if="currentPage != count" class="last">
-                        <nuxt-link :to="{ path: '/posts', query: { page: count } }" @click.native="changePage(count)" exact>В конец</nuxt-link>
-                    </li>
-                </ul>
-            </nav>
         </div>
-    </section>
+        <nav id="pagination" class="paginator">
+            <ul class="page-numbers">
+                <li v-if="currentPage != 1" class="first">
+                    <nuxt-link :to="{ path: '/posts', query: { page: '1' } }" @click.native="changePage(1)" exact>В начало</nuxt-link>
+                </li>
+                <li v-for="num in this.pageNumbers" v-if="num != null" >
+                    <nuxt-link v-if="num != $route.query.page && num != currentPage" :to="{ path: '/posts', query: { page: num } }" @click.native="changePage(num)" exact>{{ num }}</nuxt-link>
+                    <span v-else>{{num}}</span>
+                </li>
+                <li v-if="currentPage != count" class="last">
+                    <nuxt-link :to="{ path: '/posts', query: { page: count } }" @click.native="changePage(count)" exact>В конец</nuxt-link>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
 </template>
 
 <script>

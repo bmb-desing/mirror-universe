@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {post, category, sequelize, comment} from "../model";
+import {askMail} from "../mails/askMail";
 const router = Router()
 
 router.get('/post-index', function (req, res, next) {
@@ -116,4 +117,34 @@ router.post('/addComment', function (req, res, next) {
         res.sendStatus(403)
     })
 })
+router.get('/sidebar', function (req, res, next) {
+  post.findAll({
+		order: [['rating', 'DESC']],
+		limit: 3,
+    include: [
+      {
+          model: category
+      }
+    ]
+  }).then(posts => {
+      comment.findAll({
+				order: [['createdAt', 'DESC']],
+				limit: 5,
+        include: [
+          {
+              model: post,
+            include: [ {
+                  model: category
+            }]
+          },
+        ]
+      }).then(com => {
+        res.json({
+          posts: posts,
+          comments: com
+        })
+      })
+  })
+})
+router.post('/ask', askMail)
 export default router

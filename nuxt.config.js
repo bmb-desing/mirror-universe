@@ -1,5 +1,7 @@
 const axios = require('axios')
+require('dotenv').config()
 module.exports = {
+  cache: true,
   /*
   ** Headers of the page
   */
@@ -11,7 +13,7 @@ module.exports = {
   },
   sitemap: {
       path: '/sitemap.xml',
-      hostname: '127.0.0.1:3000',
+      hostname: `http://${process.env.HOST || 'localhost'}`,
       cacheTime: 1000 * 60 * 15,
       generate: false, // Enable me when using nuxt generate
 

@@ -1,6 +1,7 @@
 import Sequelize from 'sequelize'
 import striptags from 'striptags'
-export const sequelize = new Sequelize('mirror', 'root', '', {
+require('dotenv').config()
+export const sequelize = new Sequelize(process.env.DB_NAME ||'mirror', process.env.DB_USER || 'root', process.env.DB_PASSWORD || '', {
 	host: 'localhost',
 	dialect: 'mysql'
 })

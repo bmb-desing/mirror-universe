@@ -1,0 +1,75 @@
+.footer
+  margin-top: 20px
+  border: none
+  background-color: #aec8ed
+  padding: 20px 0
+  .wrapper
+    max-width: 1170px
+    display: flex
+    justify-content: space-between
+    width: 100%
+    margin: 0 auto
+    align-items: center
+  &__left
+    flex-basis: 20%
+    ul
+      padding: 0
+      margin: 0
+      list-style-type: none
+      li
+        line-height: 1.56
+      a
+        text-decoration: none
+        color: #675f53
+        +fz(16)
+        &:hover
+          text-decoration: underline
+
+  &__center
+    flex-basis: 20%
+  &__right
+    flex-basis: 60%
+  &__top
+    text-align: center
+  &__middle
+    margin: 10px 0
+    text-align: center
+  &__bottom
+    text-align: center
+    a
+      margin-left: 20px
+      text-decoration: none
+      color: #675f53
+      &:hover
+        text-decoration: underline
+
+@media screen and (max-width: 1170px)
+  .footer
+    .wrapper
+      flex-wrap: wrap
+      padding-left: 10px
+      padding-right: 10px
+@media screen and (max-width: 768px)
+  .footer
+    &__left
+      flex-basis: 50%
+    &__center
+      flex-basis: 50%
+    &__right
+      padding-top: 20px
+      flex-basis: 100%
+
+@media screen and (max-width: 480px)
+  .footer
+    &__left
+      flex-basis: 100%
+      text-align: center
+      margin-bottom: 20px
+    &__center
+      flex-basis: 100%
+      .header__social
+        &:first-child
+          margin-left: 0
+    &__bottom
+      a
+        margin-left: 0

@@ -1,6 +1,6 @@
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
-
+require('dotenv').config()
 import database from './model/index'
 import shedule from 'node-schedule'
 import parser from './parser'

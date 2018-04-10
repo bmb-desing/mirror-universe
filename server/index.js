@@ -7,18 +7,23 @@ import parser from './parser'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import api from './api'
+import bot, {telPost} from './telegram'
+const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
 const port = process.env.PORT || 3000
-
+const sessionStore = new SequelizeStore({
+  db: database,
+	checkExpirationInterval: 15 * 60 * 1000,
+	expiration: 7 * 24 * 60 * 60 * 1000
+})
 app.set('port', port)
-
 app.use(bodyParser.json())
 app.use(session({
     secret: 'super-secret-key',
-    resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 60000 * 1000 }
+    resave: false,
+    saveUninitialized: true,
+	  store: sessionStore
 }))
 // Import API Routes
 app.use('/api', api)
@@ -38,8 +43,9 @@ if (config.dev) {
 app.use(nuxt.render)
 // Listen the server
 app.listen(port, host)
-shedule.scheduleJob({minute: '0' }, function () {
+shedule.scheduleJob({second: '0' }, function () {
     parser()
+		telPost()
 })
 
 console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console

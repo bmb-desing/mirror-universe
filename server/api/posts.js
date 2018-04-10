@@ -4,12 +4,12 @@ import {askMail} from "../mails/askMail";
 const router = Router()
 
 router.get('/post-index', function (req, res, next) {
-    post.findAll({limit: 7, order: [['createdAt', 'DESC']], include: [{model:category}]}).then((posts) => {
+    post.findAll({limit: 7, order: [['createdAt', 'DESC']],  include: [{model:category}, {model:comment, attributes: ['id']}]}).then((posts) => {
         res.json(posts)
     })
 })
 router.get('/posts', function (req, res, next) {
-    post.findAndCountAll({ limit: 7, offset: 7 * (req.query.page-1 || 0), include: [{model: category}] , order: [['createdAt', 'DESC']]}).then(posts => {
+    post.findAndCountAll({ limit: 7, offset: 7 * (req.query.page-1 || 0), include: [{model: category},{model:comment, attributes: ['id']}] , order: [['createdAt', 'DESC']]}).then(posts => {
         if (req.query.page <= parseInt(posts.count/7)) {
             res.json({posts: posts.rows, count: parseInt(posts.count / 7)})
         }
@@ -25,7 +25,7 @@ router.get('/post/:category', function (req,res,next) {
         }
     }).then(cat => {
         if(cat) {
-            post.findAndCountAll({where: {catId: cat.id }, limit: 7, offset: 7 * (req.query.page-1 || 0) , order: [['createdAt', 'DESC']]}).then(posts => {
+            post.findAndCountAll({where: {catId: cat.id }, include: [{model:category}, {model:comment, attributes: ['id']}], limit: 7, offset: 7 * (req.query.page-1 || 0) , order: [['createdAt', 'DESC']]}).then(posts => {
                 const count = parseInt(posts.count/7)
                 res.json({posts: posts.rows, count: count, cat: cat})
             })
@@ -104,6 +104,30 @@ router.post('/addRating', function (req,res,next) {
     else {
         res.sendStatus(403)
     }
+})
+router.post('/addVisit', function (req,res,next) {
+	if (!req.session.visits) {
+		req.session.visits = []
+	}
+	if (req.session.visits.indexOf(req.body.id) == -1) {
+		post.findOne({where: {id: req.body.id}}).then((item) => {
+			if (item) {
+				const count = item.visits + 1
+				item.update({
+					visits: count
+				}).then((status) => {
+					req.session.visits.push(req.body.id)
+					res.json(req.body.id)
+				})
+			}
+			else {
+				res.sendStatus(404)
+			}
+		})
+	}
+	else {
+		res.sendStatus(403)
+	}
 })
 router.post('/addComment', function (req, res, next) {
     comment.create({

@@ -84,7 +84,7 @@
     import {mapGetters, mapActions} from 'vuex'
     import axios from '~/plugins/axios'
     export default {
-        name: "post",
+        name: "category-post",
         asyncData ({params ,error }) {
             return axios.get('/api/post/'+params.category+'/'+params.post).then((res) => {
                 return {post: res.data.post, rand: res.data.rand, comments: res.data.comments}

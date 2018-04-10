@@ -13,7 +13,7 @@
           <a href="#" target="_blank" class="header__social">
             <i class="fa fa-vk" aria-hidden="true"></i>
           </a>
-          <a href="#" target="_blank" class="header__social">
+          <a href="https://t.me/zerkalnaya_vselenayaa" target="_blank" class="header__social">
             <i class="fa fa-telegram" aria-hidden="true"></i>
           </a>
           <a href="#" target="_blank" class="header__social">

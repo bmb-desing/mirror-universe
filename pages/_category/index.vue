@@ -1,24 +1,7 @@
 <template>
   <div>
     <div class="post">
-      <div class="post__item" v-for="post in posts" :key="post.id">
-        <div class="post__left">
-          <nuxt-link :to="'/' + category.alias + '/' + post.alias" v-if="post.thumbnail">
-            <img :src="post.thumbnail" :alt="post.title">
-          </nuxt-link>
-        </div>
-        <div class="post__right">
-          <div class="post__category">
-            <nuxt-link :to="'/'+ category.alias">{{category.title}}</nuxt-link>
-          </div>
-          <h2 class="post__title">
-            <nuxt-link :to="'/' + category.alias + '/' + post.alias">{{post.title}}</nuxt-link>
-          </h2>
-          <div class="post__text">
-            {{post.shortText}}...
-          </div>
-        </div>
-      </div>
+      <posts v-for="post in posts" :key="post.id" :post="post"></posts>
     </div>
     <nav id="pagination" class="paginator">
       <ul class="page-numbers">
@@ -39,7 +22,7 @@
 
 <script>
 import axios from '~/plugins/axios'
-
+import Posts from '~/components/Post.vue'
 export default {
   name: 'category',
   asyncData ({ params, query,  error }) {
@@ -52,11 +35,15 @@ export default {
         error({ statusCode: 404, message: 'Категория не найдена' })
       })
   },
+  components: {
+  	Posts
+  },
   head () {
     return {
       title: `Категория: ${this.category.title} ${this.$route.query.page && this.$route.query.page != 1 ? '. Страница '+ this.$route.query.page : ''}`,
       meta: [
-          {hid: 'description', name: 'description', content: this.category.description }
+          {hid: 'description', name: 'description', content: this.category.description },
+          {breadcrumb: this.category.title}
       ]
     }
   },
@@ -100,7 +87,8 @@ export default {
                 this.posts = data.data.posts
             })
             this.setPageNumbers()
-        }
+        },
+
     },
 }
 </script>

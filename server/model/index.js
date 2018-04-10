@@ -3,7 +3,8 @@ import striptags from 'striptags'
 require('dotenv').config()
 export const sequelize = new Sequelize(process.env.DB_NAME ||'mirror', process.env.DB_USER || 'root', process.env.DB_PASSWORD || '', {
 	host: 'localhost',
-	dialect: 'mysql'
+	dialect: 'mysql',
+	timezone : "+03:00"
 })
 export const category = sequelize.define('cats', {
 	title: Sequelize.STRING,
@@ -34,6 +35,9 @@ export const post = sequelize.define('posts', {
 	},
 	visits: {
 		type: Sequelize.INTEGER, defaultValue: 0
+	},
+	telegramSend: {
+		type: Sequelize.BOOLEAN, defaultValue: 0
 	}
 }, {
 	hooks: {

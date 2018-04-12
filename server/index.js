@@ -1,6 +1,6 @@
+require('dotenv').config()
 import express from 'express'
 import { Nuxt, Builder } from 'nuxt'
-require('dotenv').config()
 import database from './model/index'
 import shedule from 'node-schedule'
 import parser from './parser'
@@ -43,7 +43,7 @@ if (config.dev) {
 app.use(nuxt.render)
 // Listen the server
 app.listen(port, host)
-shedule.scheduleJob({second: '0' }, function () {
+shedule.scheduleJob({minute: '0' }, function () {
     parser()
     //telPost()
 })

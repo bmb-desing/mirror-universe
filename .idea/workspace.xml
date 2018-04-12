@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2625d475-c268-4174-9841-3c31e7d1e440" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/LICENSES" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/app.806e028a3c405a7ef409ad02ed923355.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/app.ebbb1136b45abc59d3b8.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/img/stars.38b45ba.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/index.spa.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/index.ssr.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/layouts_default.8e6b5dfcabca2b211a03.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/manifest.0f0e91cfb28f5efb4f5f.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages__category__post_index.4ce5c1e5d15d5771e647.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages__category_index.bc02a3311fa9f3ba519d.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages_ask.2cb797ed0904aec8cdf7.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages_index.2990e21fa88dcc338d87.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages_partners.5e43fdf08978bdde4967.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/pages_posts.ba5a47a14cac608e4f23.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/server-bundle.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/vendor.1336c994590f7f00b424.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.nuxt/dist/vue-ssr-client-manifest.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/server/index.js" afterPath="$PROJECT_DIR$/server/index.js" />
-      <change beforePath="$PROJECT_DIR$/server/model/index.js" afterPath="$PROJECT_DIR$/server/model/index.js" />
+      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -36,7 +17,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -125,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+            <state relative-caret-position="132">
+              <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -192,7 +173,6 @@
         <option value="$PROJECT_DIR$/assets/sass/_fonts.sass" />
         <option value="$PROJECT_DIR$/pages/ask.vue" />
         <option value="$PROJECT_DIR$/server/mails/askMail.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/plugins/breadcrums.js" />
         <option value="$PROJECT_DIR$/components/breadcrums.vue" />
         <option value="$PROJECT_DIR$/components/Breadcrumbs.vue" />
@@ -216,6 +196,7 @@
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/server/model/index.js" />
         <option value="$PROJECT_DIR$/server/index.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -447,15 +428,16 @@
       <workItem from="1523389806976" duration="12000" />
       <workItem from="1523454577733" duration="656000" />
       <workItem from="1523519526087" duration="6511000" />
-      <workItem from="1523539079684" duration="1380000" />
+      <workItem from="1523539079684" duration="1787000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158331000" />
+    <option name="totallyTimeSpent" value="158738000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.6585366" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -463,7 +445,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5029762" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13962065" sideWeight="0.34146342" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41104972" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41104972" sideWeight="0.49789253" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24925596" sideWeight="0.4938918" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21104972" sideWeight="0.49702382" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
@@ -729,14 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="14" lean-forward="false" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
@@ -798,6 +772,14 @@
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="8" column="42" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="42" />
+          <folding />
         </state>
       </provider>
     </entry>

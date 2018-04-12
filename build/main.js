@@ -62,7 +62,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -80,15 +80,15 @@ module.exports = require("express");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return category; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return post; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return comment; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sequelize__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sequelize__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sequelize___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sequelize__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_striptags__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_striptags__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_striptags___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_striptags__);
 
 
-__webpack_require__(2).config();
+
 var sequelize = new __WEBPACK_IMPORTED_MODULE_0_sequelize___default.a(process.env.DB_NAME || 'mirror', process.env.DB_USER || 'root', process.env.DB_PASSWORD || '', {
-	host: 'localhost',
+	host: process.env.DB_HOST || 'localhost',
 	dialect: 'mysql',
 	timezone: "+03:00"
 });
@@ -156,30 +156,23 @@ comment.belongsTo(post);
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-module.exports = require("dotenv");
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_nuxt___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_nuxt__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model_index__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_node_schedule__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_node_schedule__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_node_schedule___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_node_schedule__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parser__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_body_parser__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__parser__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_body_parser__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_body_parser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_body_parser__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_express_session__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_express_session__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_express_session___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_express_session__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api__ = __webpack_require__(18);
-__webpack_require__(2).config();
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__api__ = __webpack_require__(17);
 
 
 
@@ -189,10 +182,9 @@ __webpack_require__(2).config();
 
 
 //import bot, {telPost} from './telegram'
-var SequelizeStore = __webpack_require__(24)(__WEBPACK_IMPORTED_MODULE_6_express_session___default.a.Store);
+var SequelizeStore = __webpack_require__(23)(__WEBPACK_IMPORTED_MODULE_6_express_session___default.a.Store);
 var app = __WEBPACK_IMPORTED_MODULE_0_express___default()();
-var host = process.env.HOST || '127.0.0.1';
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 var sessionStore = new SequelizeStore({
     db: __WEBPACK_IMPORTED_MODULE_2__model_index__["c" /* default */],
     checkExpirationInterval: 15 * 60 * 1000,
@@ -210,8 +202,12 @@ app.use(__WEBPACK_IMPORTED_MODULE_6_express_session___default()({
 app.use('/api', __WEBPACK_IMPORTED_MODULE_7__api__["a" /* default */]);
 
 // Import and Set Nuxt.js options
-var config = __webpack_require__(25);
-config.dev = !("production" === 'production');
+var config = __webpack_require__(24);
+config.dev = !("development" === 'production');
+__WEBPACK_IMPORTED_MODULE_3_node_schedule___default.a.scheduleJob({ minute: '0' }, function () {
+    Object(__WEBPACK_IMPORTED_MODULE_4__parser__["a" /* default */])();
+    //telPost()
+});
 // Init Nuxt.js
 var nuxt = new __WEBPACK_IMPORTED_MODULE_1_nuxt__["Nuxt"](config);
 // Build only in dev mode
@@ -222,57 +218,53 @@ if (config.dev) {
 // Give nuxt middleware to express
 app.use(nuxt.render);
 // Listen the server
-app.listen(port, host);
-__WEBPACK_IMPORTED_MODULE_3_node_schedule___default.a.scheduleJob({ minute: '0' }, function () {
-    Object(__WEBPACK_IMPORTED_MODULE_4__parser__["a" /* default */])();
-    //telPost()
+app.listen(port, function () {
+    console.log("Listening on " + port);
 });
 
-console.log('Server listening on ' + host + ':' + port); // eslint-disable-line no-console
-
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("nuxt");
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = require("sequelize");
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("striptags");
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 module.exports = require("node-schedule");
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_needle__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_needle__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_needle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_needle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_transliteration__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_transliteration__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_transliteration___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_transliteration__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mkdirp__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mkdirp__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_mkdirp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_mkdirp__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cheerio__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cheerio__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_cheerio___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_cheerio__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_request__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_request__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_request___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_request__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_url__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_url__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_url___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_url__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fs__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fs__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_fs___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_fs__);
 
 
@@ -369,69 +361,69 @@ function getThumbnail(text) {
 /* harmony default export */ __webpack_exports__["a"] = (parser);
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 module.exports = require("needle");
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = require("transliteration");
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports = require("mkdirp");
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = require("cheerio");
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("request");
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = require("url");
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = require("fs");
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports) {
 
 module.exports = require("body-parser");
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports) {
 
 module.exports = require("express-session");
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__category__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__users__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__category__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__posts__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__model__ = __webpack_require__(1);
 
 
@@ -460,7 +452,7 @@ router.get('/sitemap', function (req, res, next) {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -491,7 +483,7 @@ router.get('/users/:id', function (req, res, next) {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -512,14 +504,14 @@ router.get('/categories', function (req, res, next) {
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_express__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__model__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mails_askMail__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mails_askMail__ = __webpack_require__(21);
 
 
 
@@ -669,12 +661,12 @@ router.post('/ask', __WEBPACK_IMPORTED_MODULE_2__mails_askMail__["a" /* askMail 
 /* harmony default export */ __webpack_exports__["a"] = (router);
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return askMail; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nodemailer__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nodemailer__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_nodemailer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_nodemailer__);
 
 var mail = __WEBPACK_IMPORTED_MODULE_0_nodemailer___default.a.createTransport({
@@ -703,23 +695,23 @@ var askMail = function askMail(req, res, next) {
 };
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = require("nodemailer");
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = require("connect-session-sequelize");
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var axios = __webpack_require__(26);
-__webpack_require__(2).config();
+var axios = __webpack_require__(25);
+__webpack_require__(26).config();
 module.exports = {
   cache: true,
   /*
@@ -738,7 +730,7 @@ module.exports = {
 
     routes: function routes() {
       {
-        return axios.get('http://' + (process.env.HOST || 'localhost') + ':' + (process.env.PORT || 3000) + '/api/sitemap').then(function (res) {
+        return axios.get('http://' + (process.env.HOST || 'localhost') + '/api/sitemap').then(function (res) {
           return res.data.map(function (pages) {
             return pages;
           });
@@ -778,10 +770,16 @@ module.exports = {
 };
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+module.exports = require("dotenv");
 
 /***/ })
 /******/ ]);

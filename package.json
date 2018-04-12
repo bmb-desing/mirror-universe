@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Nuxt.js project",
   "author": "xolms111 <35960774+xolms111@users.noreply.github.com>",
-  "private": true,
+  "engineStrict": true,
   "scripts": {
     "dev": "backpack dev",
     "build": "nuxt build && backpack build",
@@ -54,3 +54,4 @@
     "sass-resources-loader": "^1.3.3"
   }
 }
+

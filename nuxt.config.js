@@ -22,7 +22,7 @@ module.exports = {
 
       routes() {
           {
-              return axios.get(`http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}` + '/api/sitemap').then(res => res.data.map(pages =>  pages))
+              return axios.get(`http://${process.env.HOST || 'localhost'}` + '/api/sitemap').then(res => res.data.map(pages =>  pages))
           }
 
       }

@@ -9,8 +9,7 @@ import api from './api'
 //import bot, {telPost} from './telegram'
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const app = express()
-const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 const sessionStore = new SequelizeStore({
   db: database,
 	checkExpirationInterval: 15 * 60 * 1000,
@@ -45,7 +44,7 @@ if (config.dev) {
 // Give nuxt middleware to express
 app.use(nuxt.render)
 // Listen the server
-app.listen(port, host)
+app.listen(port, function () {
+    console.log("Listening on " + port)
+})
 
-
-console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console

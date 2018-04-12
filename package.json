@@ -28,6 +28,7 @@
     "node-telegram-bot-api": "^0.30.0",
     "nodemailer": "^4.6.4",
     "nuxt": "^1.0.0-rc3",
+    "peryod": "^1.0.0",
     "sequelize": "^4.37.5",
     "source-map-support": "^0.4.15",
     "striptags": "^3.1.1",

@@ -55,13 +55,6 @@ router.get('/post/:category/:post', function (req, res, next) {
         if (item) {
             comment.findAll(
                 {
-
-                    attributes: [
-                        'parent_id',
-                        'id',
-                        'name',
-                        'text',
-                    ],
                     where:
                     {
                         postId: item.id

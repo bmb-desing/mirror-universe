@@ -29,7 +29,7 @@
                 <li v-for="(item) in comments" :key="item.id" :id="'comment'+item.id" class="comment__item">
                     <div class="comment__header">
                         <div class="comment__left">
-                            Коментарий <a :href="'#comment' + item.id" :name="'comment' + item.id">#{{item.id}}</a> от {{item.name}}
+                            Коментарий <a :href="'#comment' + item.id" :name="'comment' + item.id">#{{item.id}}</a> от {{item.name}} {{commentDate(item.createdAt)}}
                         </div>
                         <div class="comment__right">
                             <span @click="replaceForm(item.id)">Ответить</span>
@@ -37,6 +37,7 @@
                     </div>
                     <div class="comment__text">
                         {{item.text}}
+
                     </div>
                     <div class="comment__footer" v-if="item.parent_id != 0">
                         Ответ на коментарий <a :href="'#comment' + item.parent_id">{{item.parent_id}}</a>
@@ -83,6 +84,7 @@
 <script>
     import {mapGetters, mapActions} from 'vuex'
     import axios from '~/plugins/axios'
+    import peryod from'~/plugins/period.js'
     export default {
         name: "category-post",
         asyncData ({params ,error }) {
@@ -137,6 +139,9 @@
                     })
                 }, 50)
 
+            },
+            commentDate(date) {
+                return peryod(date)
             },
             replaceForm(id)  {
                 this.form.name = ''

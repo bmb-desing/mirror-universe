@@ -8,6 +8,9 @@ module.exports = {
   modules: [
       '@nuxtjs/sitemap'
   ],
+    plugins: [
+        '~/plugins/period.js'
+    ],
   router: {
       linkActiveClass: 'active'
   },

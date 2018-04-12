@@ -7,7 +7,7 @@ import parser from './parser'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 import api from './api'
-import bot, {telPost} from './telegram'
+//import bot, {telPost} from './telegram'
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const app = express()
 const host = process.env.HOST || '127.0.0.1'
@@ -45,7 +45,7 @@ app.use(nuxt.render)
 app.listen(port, host)
 shedule.scheduleJob({second: '0' }, function () {
     parser()
-		telPost()
+    //telPost()
 })
 
 console.log('Server listening on ' + host + ':' + port) // eslint-disable-line no-console
